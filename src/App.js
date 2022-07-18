@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import ExpenseItem from "./components/ExpenseItem";
+import expenses from "./Expenses.jsx";
+import "./components/ExpenseItem.css"
+import NewExpense from "./components/new/NewExpense";
+// import NewExpense from "./components/NewExpense/NewExpense";
 
 function App() {
+  const addExpense=(expense)=>{
+    console.log("from app.js");
+    console.log(expense);
+
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NewExpense onAddExpense={addExpense}/>
+      <div className="expenses">
+        {expenses.map((val) => {
+          return (
+            <ExpenseItem key={val.amount}
+              title={val.title}
+              date={val.date}
+              amount={val.amount}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 }
 
